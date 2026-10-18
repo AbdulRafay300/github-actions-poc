@@ -1,0 +1,20 @@
+name: Manual Trigger
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your name'
+        required: true
+      greeting:
+        description: 'Greeting message'
+        required: true
+      data:
+        description: 'Some extra data'
+        required: false
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "${{ inputs.greeting }}, ${{ inputs.name }}!"
+          echo "Data: ${{ inputs.data }}"
