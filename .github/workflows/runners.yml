@@ -1,0 +1,27 @@
+name: Multi OS Runners
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  windows-job:
+    runs-on: windows-latest
+    steps:
+      - name: Show Windows version
+        shell: powershell
+        run: |
+          Write-Host "Running on Windows"
+          systeminfo | Select-String "OS Name","OS Version"
+      - name: Install package with Choco
+        run: choco install wget -y
+
+  mac-job:
+    runs-on: macos-latest
+    steps:
+      - name: Show macOS version
+        run: |
+          echo "Running on macOS"
+          sw_vers
+      - name: Check Swift
+        run: swift --version
