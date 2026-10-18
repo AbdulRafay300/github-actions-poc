@@ -1,0 +1,9 @@
+name: Self Hosted Test
+on:
+  workflow_dispatch:
+jobs:
+  local-job:
+    runs-on: [self-hosted, mylabel]
+    steps:
+      - name: Say hello from my PC
+        run: echo "Hello from my self-hosted runner"
