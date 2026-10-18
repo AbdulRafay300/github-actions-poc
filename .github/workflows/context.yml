@@ -1,0 +1,35 @@
+name: Context and Conditionals
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+env:
+  MY_ENV: "hello-from-env"
+jobs:
+  show-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print context objects
+        run: |
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Env value: ${{ env.MY_ENV }}"
+          echo "Repo: ${{ github.repository }}"
+
+      - name: Runs only if repo name contains poc
+        if: contains(github.repository, 'poc')
+        run: echo "Repo name contains poc"
+
+      - name: Runs only on success
+        if: success()
+        run: echo "Previous steps succeeded"
+
+      - name: Runs only on failure
+        if: failure()
+        run: echo "This will be skipped because nothing failed"
+
+      - name: Always runs
+        if: always()
+        run: echo "This always runs"
