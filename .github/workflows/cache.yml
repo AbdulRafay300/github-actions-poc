@@ -10,7 +10,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: my-cache
-          key: my-cache-key-v1
+          key: my-cache-key-v2
 
       - name: Create data if cache missed
         if: steps.cache.outputs.cache-hit != 'true'
