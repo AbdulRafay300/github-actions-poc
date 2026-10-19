@@ -1,0 +1,14 @@
+name: Use Custom Action
+on:
+  workflow_dispatch:
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run my action
+        id: hello
+        uses: AbdulRafay300/hello-action@v1.0.0
+        with:
+          who-to-greet: 'Abdul'
+      - name: Show output
+        run: echo "Output was ${{ steps.hello.outputs.greeting }}"
